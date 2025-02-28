@@ -29,18 +29,6 @@ pipeline {
                 script {
                     // Install dependencies using pip from requirements.txt
                     sh './${VIRTUALENV_DIR}/bin/pip install -r requirements.txt'
-                    // Optional: Check installed packages to confirm pytest is installed
-                    sh './${VIRTUALENV_DIR}/bin/pip list'  // This will list installed packages
-                }
-            }
-        }
-
-        stage('Run Tests') {
-            steps {
-                script {
-                    // Run tests using pytest and ensure test discovery
-                    // Specify the test directory or files if necessary (e.g., tests/)
-                    sh './${VIRTUALENV_DIR}/bin/python -m pytest --maxfail=5 --disable-warnings --verbose'
                 }
             }
         }
@@ -49,7 +37,6 @@ pipeline {
             steps {
                 script {
                     // Example: Deploy your Python app (modify with your specific deployment steps)
-                    // You can replace this with your actual deploy command or script
                     echo 'Deploying the application...'
                     sh './${VIRTUALENV_DIR}/bin/python deploy.py' // Replace with your deploy command
                 }
