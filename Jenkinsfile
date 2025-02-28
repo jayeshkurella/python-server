@@ -29,6 +29,8 @@ pipeline {
                 script {
                     // Install dependencies using pip from requirements.txt
                     sh './${VIRTUALENV_DIR}/bin/pip install -r requirements.txt'
+                    // Optional: Check installed packages to confirm pytest is installed
+                    sh './${VIRTUALENV_DIR}/bin/pip list'  // This will list installed packages
                 }
             }
         }
@@ -36,8 +38,9 @@ pipeline {
         stage('Run Tests') {
             steps {
                 script {
-                    // Run tests using pytest
-                    sh './${VIRTUALENV_DIR}/bin/python -m pytest'
+                    // Run tests using pytest and ensure test discovery
+                    // Specify the test directory or files if necessary (e.g., tests/)
+                    sh './${VIRTUALENV_DIR}/bin/python -m pytest --maxfail=5 --disable-warnings --verbose'
                 }
             }
         }
