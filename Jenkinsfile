@@ -54,6 +54,8 @@ pipeline {
 
         success {
             echo 'Build and Deployment Successful!'
+            // Print the URL to access the app
+            echo "You can access the app at: http://172.20.67.173:9090"
         }
 
         failure {
