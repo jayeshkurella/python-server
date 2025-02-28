@@ -36,9 +36,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    // Example: Deploy your Python app (modify with your specific deployment steps)
+                    // Deploy the Django app
                     echo 'Deploying the application...'
-                    sh './${VIRTUALENV_DIR}/bin/python deploy.py' // Replace with your deploy command
+                    // Run the Django server
+                    sh './${VIRTUALENV_DIR}/bin/python manage.py runserver 0.0.0.0:9090'
                 }
             }
         }
