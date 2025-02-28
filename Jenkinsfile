@@ -36,10 +36,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    // Deploy the Django app
+                    // Deploy the Django app in the background
                     echo 'Deploying the application...'
-                    // Run the Django server
-                    sh './${VIRTUALENV_DIR}/bin/python manage.py runserver 0.0.0.0:9090'
+                    // Run Django with nohup and background execution
+                    sh 'nohup ./${VIRTUALENV_DIR}/bin/python manage.py runserver 0.0.0.0:9090 &'
                 }
             }
         }
